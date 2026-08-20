@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/ianch-Secondary/Programming/ml_trading_engine/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

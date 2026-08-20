@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/mnt/ianch-Secondary/Programming/ml_trading_engine/build",
+  "command": "/usr/bin/c++ -isystem /opt/cuda/targets/x86_64-linux/include -isystem /opt/cuda/targets/x86_64-linux/include/cccl -O2 -march=native -Wall -Wextra -std=gnu++20 -fmodules-ts -fmodule-mapper=CMakeFiles/engine.dir/src/main.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/engine.dir/src/main.cpp.o -c /mnt/ianch-Secondary/Programming/ml_trading_engine/src/main.cpp",
+  "file": "/mnt/ianch-Secondary/Programming/ml_trading_engine/src/main.cpp",
+  "output": "/mnt/ianch-Secondary/Programming/ml_trading_engine/build/CMakeFiles/engine.dir/src/main.cpp.o"
+}
+]

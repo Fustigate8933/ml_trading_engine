@@ -1,3 +1,0 @@
-/mnt/ianch-Secondary/Programming/ml_trading_engine/build/CMakeFiles/engine.dir
-/mnt/ianch-Secondary/Programming/ml_trading_engine/build/CMakeFiles/edit_cache.dir
-/mnt/ianch-Secondary/Programming/ml_trading_engine/build/CMakeFiles/rebuild_cache.dir

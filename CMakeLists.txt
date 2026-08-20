@@ -21,13 +21,23 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(CUDAToolkit REQUIRED)
 
+# main executable
 add_executable(engine
     src/main.cpp
 )
 
+target_include_directories(engine PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(engine PRIVATE CUDA::cudart)
 
 set_target_properties(engine PROPERTIES
     CUDA_ARCHITECTURES native
 )
 
+# test executable
+add_executable(test_spsc tests/test_spsc.cpp)
+target_include_directories(test_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)
+
+# benchmark executable
+add_executable(bench_spsc benchmarks/bench_spsc.cpp)
+target_include_directories(bench_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(bench_spsc PRIVATE pthread)

@@ -1,6 +1,7 @@
 .envrc
 .venv
 .cache
+data
 build
 AGENTS.md
 PROGRESS.md

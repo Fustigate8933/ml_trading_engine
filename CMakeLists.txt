@@ -37,6 +37,9 @@ set_target_properties(engine PROPERTIES
 add_executable(test_spsc tests/test_spsc.cpp)
 target_include_directories(test_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
+add_executable(test_itch_parser tests/test_itch_parser.cpp)
+target_include_directories(test_itch_parser PRIVATE ${CMAKE_SOURCE_DIR}/src)
+
 # benchmark executable
 add_executable(bench_spsc benchmarks/bench_spsc.cpp)
 target_include_directories(bench_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)

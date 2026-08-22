@@ -39,37 +39,60 @@ inline uint64_t parse_u64(const uint8_t *p) {
 }
 
 inline AddOrderMessage parse_add_order(const uint8_t *msg) {
-    // assume msg is already at the stock locate (1 byte past message type)
+    AddOrderMessage m{};
+    m.stock_locate = parse_u16(msg);
+    m.tracking_number = parse_u16(msg + 2);
+    m.timestamp = parse_timestamp(msg + 4);
+    m.order_ref = parse_u64(msg + 10);
+    m.side = msg[18];
+    m.shares = parse_u32(msg + 19);
+    std::memcpy(m.stock, msg + 23, 8);
+    m.price = parse_u32(msg + 31);
+    return m;
+}
 
-    MessageHeader header;
+inline AddOrderMessage parse_add_order_mpid(const uint8_t *msg) {
+    return parse_add_order(msg);
+}
 
-    header.type = 'A';
+inline OrderDeleteMessage parse_order_delete(const uint8_t *msg) {
+    OrderDeleteMessage m{};
+    m.stock_locate = parse_u16(msg);
+    m.tracking_number = parse_u16(msg + 2);
+    m.timestamp = parse_timestamp(msg + 4);
+    m.order_ref = parse_u64(msg + 10);
+    return m;
+}
 
-    header.stock_locate = parse_u16(msg);
-    msg += 2;
+inline OrderCancelMessage parse_order_cancel(const uint8_t *msg) {
+    OrderCancelMessage m{};
+    m.stock_locate = parse_u16(msg);
+    m.tracking_number = parse_u16(msg + 2);
+    m.timestamp = parse_timestamp(msg + 4);
+    m.order_ref = parse_u64(msg + 10);
+    m.canceled_shares = parse_u32(msg + 18);
+    return m;
+}
 
-    header.tracking_number = parse_u16(msg);
-    msg += 2;
+inline OrderExecutedMessage parse_order_executed(const uint8_t *msg) {
+    OrderExecutedMessage m{};
+    m.stock_locate = parse_u16(msg);
+    m.tracking_number = parse_u16(msg + 2);
+    m.timestamp = parse_timestamp(msg + 4);
+    m.order_ref = parse_u64(msg + 10);
+    m.executed_shares = parse_u32(msg + 18);
+    m.match_number = parse_u64(msg + 22);
+    return m;
+}
 
-    header.timestamp = parse_timestamp(msg);
-    msg += 6;
-
-    AddOrderMessage message{header.stock_locate, header.tracking_number, header.timestamp};
-
-    message.order_ref = parse_u64(msg);
-    msg += 8;
-
-    std::memcpy(&message.side, msg, 1);
-    msg++;
-
-    message.shares = parse_u32(msg);
-    msg += 4;
-
-    std::memcpy(&message.stock, msg, 8);
-    msg += 8;
-
-    message.price = parse_u32(msg);
-    msg += 4;
-
-    return message;
+inline OrderReplaceMessage parse_order_replace(const uint8_t *msg) {
+    OrderReplaceMessage m{};
+    m.stock_locate = parse_u16(msg);
+    m.tracking_number = parse_u16(msg + 2);
+    m.timestamp = parse_timestamp(msg + 4);
+    m.original_order_ref = parse_u64(msg + 10);
+    m.new_order_ref = parse_u64(msg + 18);
+    m.shares = parse_u32(msg + 26);
+    m.price = parse_u32(msg + 30);
+    return m;
 }

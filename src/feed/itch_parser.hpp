@@ -38,8 +38,8 @@ inline uint64_t parse_u64(const uint8_t *p) {
     return val;
 }
 
-inline AddOrderMessage parse_add_order(const uint8_t *msg) {
-    AddOrderMessage m{};
+inline OrderAddMessage parse_add_order(const uint8_t *msg) {
+    OrderAddMessage m{};
     m.stock_locate = parse_u16(msg);
     m.tracking_number = parse_u16(msg + 2);
     m.timestamp = parse_timestamp(msg + 4);
@@ -51,7 +51,7 @@ inline AddOrderMessage parse_add_order(const uint8_t *msg) {
     return m;
 }
 
-inline AddOrderMessage parse_add_order_mpid(const uint8_t *msg) {
+inline OrderAddMessage parse_add_order_mpid(const uint8_t *msg) {
     return parse_add_order(msg);
 }
 

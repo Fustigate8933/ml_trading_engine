@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include <cstdint>
 
 struct MessageHeader {
@@ -11,7 +9,7 @@ struct MessageHeader {
     uint64_t timestamp;
 };
 
-struct AddOrderMessage {
+struct OrderAddMessage {
     uint16_t stock_locate;
     uint16_t tracking_number;
     uint64_t timestamp;

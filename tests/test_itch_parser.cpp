@@ -21,7 +21,7 @@ int main() {
         type_count[type]++;
 
         if (type == 'A' && type_count['A'] <= 5) {
-            AddOrderMessage message = parse_add_order(p);
+            OrderAddMessage message = parse_add_order(p);
 
             // stock is not null-terminated
             std::cout << "Stock: ";

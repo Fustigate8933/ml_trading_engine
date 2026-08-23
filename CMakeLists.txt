@@ -40,6 +40,9 @@ target_include_directories(test_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)
 add_executable(test_itch_parser tests/test_itch_parser.cpp)
 target_include_directories(test_itch_parser PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
+add_executable(test_order_book tests/test_order_book.cpp)
+target_include_directories(test_order_book PRIVATE ${CMAKE_SOURCE_DIR}/src)
+
 # benchmark executable
 add_executable(bench_spsc benchmarks/bench_spsc.cpp)
 target_include_directories(bench_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)

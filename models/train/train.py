@@ -67,3 +67,16 @@ print(f"Test Loss: {test_loss:.4f} | Test Accuracy: {test_acc:.4f}")
 
 torch.save(model.state_dict(), "models/baseline.pt")
 print(f"Model saved to models/baseline.pt")
+
+
+model.eval()
+dummy_input = torch.randn(1, 50, 40).to(device)
+torch.onnx.export(
+    model,
+    dummy_input,
+    "models/baseline.onnx",
+    input_names=["input"],
+    output_names=["output"],
+    dynamic_axes={"input": {0: "batch"}, "output": {0: "batch"}}
+)
+print("Exported to onnx at models/baseline.onnx")

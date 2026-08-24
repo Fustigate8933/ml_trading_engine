@@ -3,7 +3,12 @@
 .cache
 data
 models/*.pt
+models/*.onnx
+models/*.onnx.data
+models/*.engine
 models/__pycache__/*
+__pycache__/
+*.pyc
 build
 AGENTS.md
 PROGRESS.md

@@ -47,3 +47,8 @@ target_include_directories(test_order_book PRIVATE ${CMAKE_SOURCE_DIR}/src)
 add_executable(bench_spsc benchmarks/bench_spsc.cpp)
 target_include_directories(bench_spsc PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(bench_spsc PRIVATE pthread)
+
+# TensorRT inference benchmark
+add_executable(bench_infer benchmarks/bench_infer.cpp)
+target_include_directories(bench_infer PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(bench_infer PRIVATE CUDA::cudart nvinfer)

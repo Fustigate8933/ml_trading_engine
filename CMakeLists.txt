@@ -52,3 +52,8 @@ target_link_libraries(bench_spsc PRIVATE pthread)
 add_executable(bench_infer benchmarks/bench_infer.cpp)
 target_include_directories(bench_infer PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(bench_infer PRIVATE CUDA::cudart nvinfer)
+
+# End-to-end pipeline
+add_executable(pipeline src/pipeline.cpp)
+target_include_directories(pipeline PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(pipeline PRIVATE CUDA::cudart nvinfer)

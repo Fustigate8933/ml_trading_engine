@@ -90,4 +90,34 @@ public:
     }
 
     size_t order_count() const { return orders_.size(); }
+
+    bool extract_features(float *out, int levels_extract = 10) const {
+        // [ask_price_1, ask_vol_1, bid_price_1, bid_vol_1, ... × 10 levels]
+        int idx = 0;
+
+        auto ask_it = ask_levels_.begin();
+        auto bid_it = bid_levels_.rbegin();
+
+        for (int i = 0; i < levels_extract; i++) {
+            if (ask_it != ask_levels_.end()) {
+                out[idx++] = ask_it->first / 10000.0f;   // price in dollars
+                out[idx++] = ask_it->second / 1000.0f;   // volume scaled
+                ++ask_it;
+            } else {
+                out[idx++] = 0.0f;
+                out[idx++] = 0.0f;
+            }
+
+            if (bid_it != bid_levels_.rend()) {
+                out[idx++] = bid_it->first / 10000.0f;
+                out[idx++] = bid_it->second / 1000.0f;
+                ++bid_it;
+            } else {
+                out[idx++] = 0.0f;
+                out[idx++] = 0.0f;
+            }
+        }
+
+        return (idx == levels_extract * 4);
+    }
 };

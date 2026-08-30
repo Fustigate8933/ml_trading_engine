@@ -57,3 +57,8 @@ target_link_libraries(bench_infer PRIVATE CUDA::cudart nvinfer)
 add_executable(pipeline src/pipeline.cpp)
 target_include_directories(pipeline PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(pipeline PRIVATE CUDA::cudart nvinfer)
+
+# Multi-threaded pipeline
+add_executable(pipeline_mt src/pipeline_mt.cpp)
+target_include_directories(pipeline_mt PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(pipeline_mt PRIVATE CUDA::cudart nvinfer pthread)

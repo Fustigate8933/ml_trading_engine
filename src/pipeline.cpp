@@ -42,7 +42,7 @@ void print_stats(const char* label, std::vector<uint64_t>& v) {
 int main() {
     ITCHReader reader{"data/sample_100mb.bin"};
     OrderBook ob;
-    TRTInfer engine("models/baseline.engine");
+    TRTInfer engine("models/lstm.engine");
     engine.capture_graph();
     RiskManager risk;
     Position pos;

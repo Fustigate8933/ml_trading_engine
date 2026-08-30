@@ -27,3 +27,19 @@ class Baseline(nn.Module):
         x = self.l3(x)
 
         return x
+
+
+class LSTMModel(nn.Module):
+    def __init__(self, features=40, hidden=64, num_layers=2):
+        super().__init__()
+
+        self.lstm = nn.LSTM(input_size=features, hidden_size=hidden, num_layers=num_layers, batch_first=True, dropout=0.2)
+        self.dropout = nn.Dropout(0.3)
+        self.fc = nn.Linear(hidden, 3)
+
+    def forward(self, x):
+        out, _ = self.lstm(x)        # (batch, 50, 64)
+        out = out[:, -1, :]          # (batch, 64) — last timestep only
+        out = self.dropout(out)
+        out = self.fc(out)            # (batch, 3)
+        return out

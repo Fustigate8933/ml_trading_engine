@@ -21,7 +21,7 @@ void print_stats(const char* label, std::vector<int64_t>& latencies) {
 }
 
 int main() {
-    TRTInfer engine("models/baseline.engine");
+    TRTInfer engine("models/lstm.engine");
 
     float input[50 * 40] = {};
     float output[3] = {};

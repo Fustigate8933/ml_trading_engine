@@ -6,8 +6,8 @@ The .engine file is loaded by the C++ runtime for inference.
 
 import tensorrt as trt
 
-ONNX_PATH = "baseline.onnx"
-ENGINE_PATH = "baseline.engine"
+ONNX_PATH = "lstm.onnx"
+ENGINE_PATH = "lstm.engine"
 
 # TensorRT uses a "logger" for build-time warnings/errors
 logger = trt.Logger(trt.Logger.INFO)
